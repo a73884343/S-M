@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>لوحة الإدارة - S&M</title>
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+<div id="admin-container" class="container">
+<h2>لوحة التحكم الخرافية</h2>
+
+<section id="alerts-section">
+    <h3>التنبيهات</h3>
+    <div id="alerts-box" style="background:#111; color:red; padding:10px; border-radius:5px; min-height:50px;">
+        لا توجد تنبيهات حالياً
+    </div>
+</section>
+
+<section id="codes-section">
+    <h3>توليد أكواد الاشتراك</h3>
+    <button class="btn" onclick="makeKey(30*24*60*60*1000)">كود 1 شهر</button>
+    <button class="btn" onclick="makeKey(60*24*60*60*1000)">كود شهرين</button>
+    <input type="number" id="custom-days" placeholder="عدد الأيام للكود المخصص">
+    <button class="btn" onclick="makeKey(parseInt(document.getElementById('custom-days').value)*24*60*60*1000)">كود مخصص</button>
+</section>
+
+<section id="users-section">
+<h3>المستخدمين وإدارة الإدارة</h3>
+<table id="users-table" border="1" style="width:100%; color:white; margin-top:10px;">
+    <thead>
+        <tr>
+            <th>اسم المستخدم</th>
+            <th>الدور</th>
+            <th>الاشتراك ينتهي</th>
+            <th>إجراءات</th>
+        </tr>
+    </thead>
+    <tbody></tbody>
+</table>
+<div style="margin-top:15px;">
+    <button class="btn" onclick="addDeputy()">إضافة نائب Owner</button>
+    <button class="btn" onclick="addNewAdmin()">إضافة أدمن جديد</button>
+    <button class="btn" onclick="changeOwnerPass()">تغيير كلمة مرور Owner</button>
+</div>
+</section>
+
+<section id="content-section">
+<h3>إدارة الأفلام / المسلسلات / الأنمي</h3>
+<select id="content-type">
+    <option value="movies">أفلام</option>
+    <option value="series">مسلسلات</option>
+    <option value="anime">أنمي</option>
+</select>
+<input type="text" id="content-title" placeholder="اسم المحتوى">
+<input type="text" id="content-year" placeholder="السنة">
+<input type="text" id="content-type-input" placeholder="النوع">
+<input type="text" id="content-rating" placeholder="التقييم">
+<input type="text" id="content-poster" placeholder="رابط البوستر">
+<textarea id="content-desc" placeholder="وصف القصة"></textarea>
+<button class="btn" onclick="addContentAdmin()">إضافة المحتوى</button>
+</section>
+
+<section id="stats-section">
+<h3>إحصائيات</h3>
+<p id="stats-counts">الأفلام: 0 | المسلسلات: 0 | الأنمي: 0</p>
+</section>
+
+</div>
+
+<script src="firebase-config.js"></script>
+<script src="scripts.js"></script>
+</body>
+</html>
